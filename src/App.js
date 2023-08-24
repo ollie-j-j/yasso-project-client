@@ -1,23 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import { Button } from "@material-tailwind/react";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="flex w-max gap-4">
+        <Button className="font-roboto lowercase" variant="filled">filled</Button>
+        <Button className="font-roboto lowercase" variant="gradient">gradient</Button>
+        <Button className="font-roboto lowercase" variant="outlined">outlined</Button>
+        <Button className="font-roboto lowercase" variant="text">text</Button>
+      </div>
     </div>
   );
 }

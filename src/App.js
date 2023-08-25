@@ -1,15 +1,20 @@
 import './App.css';
-import { Button } from "@material-tailwind/react";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import NavbarDefault from './components/NavbarDefault';
+import SignUpPage from './pages/SignUpPage';
+
 
 function App() {
   return (
     <div className="App">
-      <div className="flex w-max gap-4">
-        <Button className="font-roboto lowercase" variant="filled">filled</Button>
-        <Button className="font-roboto lowercase" variant="gradient">gradient</Button>
-        <Button className="font-roboto lowercase" variant="outlined">outlined</Button>
-        <Button className="font-roboto lowercase" variant="text">text</Button>
-      </div>
+      <NavbarDefault />
+
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/signup" element={<SignUpPage />} />
+      </Routes>
+
     </div>
   );
 }

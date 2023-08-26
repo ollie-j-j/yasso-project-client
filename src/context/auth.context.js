@@ -9,11 +9,11 @@ function AuthProviderWrapper({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  const storeToken = (token) => {       //  <==  ADD
+  const storeToken = (token) => {      
     localStorage.setItem('authToken', token);
   }
 
-  const authenticateUser = () => {           //  <==  ADD  
+  const authenticateUser = () => {           
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem('authToken');
     
@@ -47,13 +47,13 @@ function AuthProviderWrapper({ children }) {
     }   
   }
 
-  const removeToken = () => {                    // <== ADD
+  const removeToken = () => {                    
     // Upon logout, remove the token from the localStorage
     localStorage.removeItem("authToken");
   }
  
  
-  const logOutUser = () => {                   // <== ADD    
+  const logOutUser = () => {                      
     // To log out the user, remove the token
     removeToken();
     // and update the state variables    

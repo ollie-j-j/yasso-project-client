@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
 import './SignUpForm.css';
 import {
     Card,
     Input,
-    Checkbox,
     Button,
     Typography,
 } from "@material-tailwind/react";
+import authMethods from "../services/auth.service";
 
 function SignUpForm() {
     const [formData, setFormData] = useState({
@@ -27,10 +26,14 @@ function SignUpForm() {
     const handleSignUp = (event) => {
         event.preventDefault();
 
-        axios.post('http://localhost:5005/api/signup', formData)
+        authMethods.signUp(formData)
             .then(response => {
+
+                console.log(response);
             })
             .catch(error => {
+
+                console.error(error);
             });
     };
 

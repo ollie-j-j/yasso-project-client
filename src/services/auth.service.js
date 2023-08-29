@@ -2,7 +2,7 @@ import axios from "axios";
  
 const api = axios.create({
   // make sure you use PORT = 5005 (the port where our server is running)
-  baseURL: process.env.REACT_APP_SERVER_URL || 'http://localhost:5005'
+  baseURL: "http://localhost:5005"
   // withCredentials: true // => you might need this option if using cookies and sessions
 });
 
@@ -12,8 +12,8 @@ const signUp = ({ username, password, email }) => {
                    .catch(err => console.error(err))
 }
 
-const signIn = ({identifier, password}) => {
-    return api.post("/auth/signin", {identifier, password})
+const logIn = ({username, password}) => {
+    return api.post("/auth/login", {username, password})
                 .then(response => response.data)
                 .catch(err => console.error(err))
 }
@@ -37,13 +37,17 @@ const getCurrentUser = () => {
     .catch(err => console.error(err))
 }
 
-const editUser = ({username, email, image }) => {
-    return api.put("/api/users", {username, email, image})
-}
+const editUser = (formData) => {
+    const storedToken = localStorage.getItem('authToken')
+    return api.put("/api/users/edit-profile", formData, { headers: { Authorization: `Bearer ${storedToken}`}})
+        .then(response => response.data)
+        .catch(err => console.error(err));
+};
+
 
 const authMethods = {
     signUp,
-    signIn,
+    logIn,
     verifyToken,
     uploadPhoto,
     getCurrentUser,

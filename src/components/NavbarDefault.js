@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import './NavbarDefault.css';
+import { Link } from 'react-router-dom';
 import {
   Navbar,
   Collapse,
@@ -30,6 +31,7 @@ import {
   PuzzlePieceIcon,
   GiftIcon,
 } from "@heroicons/react/24/outline";
+import { AuthContext } from "../context/auth.context";
  
 const colors = {
   blue: "bg-blue-50 text-blue-500",
@@ -108,32 +110,21 @@ function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
  
-  const renderItems = navListMenuItems.map(
-    ({ icon, title, description, color }, key) => (
-      <a href="#" key={key}>
-        <MenuItem className="flex items-center gap-3 rounded-lg">
-          <div className={`rounded-lg p-5 ${colors[color]}`}>
-            {React.createElement(icon, {
-              strokeWidth: 2,
-              className: "h-6 w-6",
-            })}
-          </div>
-          <div>
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className="flex items-center text-sm"
-            >
-              {title}
-            </Typography>
-            <Typography variant="small" color="gray" className="font-normal">
-              {description}
-            </Typography>
-          </div>
-        </MenuItem>
-      </a>
-    )
-  );
+  const renderItems = navListMenuItems.map(({ icon, title, description, color }, key) => (
+    <MenuItem key={key} className="flex items-center gap-3 rounded-lg">
+      <div className={`rounded-lg p-5 ${colors[color]}`}>
+        {React.createElement(icon, { strokeWidth: 2, className: 'h-6 w-6' })}
+      </div>
+      <div>
+        <Typography variant="h6" color="blue-gray" className="flex items-center text-sm">
+          {title}
+        </Typography>
+        <Typography variant="small" color="gray" className="font-normal">
+          {description}
+        </Typography>
+      </div>
+    </MenuItem>
+  ));
  
   return (
     <React.Fragment>
@@ -182,66 +173,67 @@ function NavListMenu() {
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-normal"
-      >
+      <Typography variant="small" color="blue-gray" className="font-normal">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           <CubeTransparentIcon className="h-[18px] w-[18px]" />
           dashboard
         </ListItem>
       </Typography>
       <NavListMenu />
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-normal"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <UserCircleIcon className="h-[18px] w-[18px]" />
-          profile
-        </ListItem>
-      </Typography>
+      <Link to="/profile">
+        <Typography variant="small" color="blue-gray" className="font-normal">
+          <ListItem className="flex items-center gap-2 py-2 pr-4">
+            <UserCircleIcon className="h-[18px] w-[18px]" />
+            profile
+          </ListItem>
+        </Typography>
+      </Link>
     </List>
   );
 }
  
 function NavbarDefault() {
+  const { isLoggedIn, logOutUser } = useContext(AuthContext);  // ADD this line
   const [openNav, setOpenNav] = React.useState(false);
- 
+
+  const handleLogout = () => {  // ADD this function
+    logOutUser();
+  };
+
   React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
-    );
+    window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
   }, []);
- 
+
   return (
     <Navbar className="mx-auto max-w-screen-xl px-4 py-2 navbar-container">
       <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="#"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
-        >
-          yasso
-        </Typography>
+        <Link to="/">
+          <Typography variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2">
+            yasso
+          </Typography>
+        </Link>
         <div className="hidden lg:block">
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="text" size="sm" color="blue-gray">
-            sign in
-          </Button>
-          <Button variant="gradient" size="sm">
-            sign up
-          </Button>
+          {isLoggedIn ? (
+            <Button variant="text" size="sm" color="blue-gray" onClick={handleLogout}>
+              log out
+            </Button>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="text" size="sm" color="blue-gray">
+                  log in
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button variant="gradient" size="sm">
+                  sign up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
         <IconButton
           variant="text"
@@ -259,12 +251,24 @@ function NavbarDefault() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-            sign in
-          </Button>
-          <Button variant="gradient" size="sm" fullWidth>
-            sign up
-          </Button>
+          {isLoggedIn ? (
+            <Button variant="outlined" size="sm" color="blue-gray" fullWidth onClick={handleLogout}>
+              log out
+            </Button>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+                  log in
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button variant="gradient" size="sm" fullWidth>
+                  sign up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </Collapse>
     </Navbar>

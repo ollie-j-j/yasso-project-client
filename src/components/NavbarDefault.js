@@ -54,55 +54,55 @@ const navListMenuItems = [
   {
     color: "orange",
     icon: ChatBubbleOvalLeftIcon,
-    title: "Press",
-    description: "News and writings, press releases, and resources",
+    title: "yasso",
+    description: "800m repeats",
   },
   {
     color: "green",
     icon: UsersIcon,
     title: (
       <div className="flex items-center gap-1">
-        Careers{" "}
+        rest{" "}
         <Chip
           size="sm"
           color="green"
           variant="ghost"
-          value="We're hiring!"
-          className="capitalize"
+          value="test"
+          className="lowercase"
         />
       </div>
     ),
-    description: "We are always looking for talented people. Join us!",
+    description: "very important",
   },
   {
     color: "blue-gray",
     icon: FolderIcon,
-    title: "Legal",
-    description: "All the stuff that we dan from legal made us add.",
+    title: "tempo run",
+    description: "this is a tempo run",
   },
   {
     color: "purple",
     icon: RocketLaunchIcon,
-    title: "Products",
-    description: "Checkout our products that helps a startup running.",
+    title: "threshold run",
+    description: "this is a threshold workout",
   },
   {
     color: "teal",
     icon: FaceSmileIcon,
-    title: "Icons",
-    description: "Set of beautiful icons that you can use in your project.",
+    title: "long run",
+    description: "long runnnig is important",
   },
   {
     color: "cyan",
     icon: PuzzlePieceIcon,
-    title: "UI Kits",
-    description: "High quality UI Kits helps you to 2x faster.",
+    title: "recovery",
+    description: "90 seconds to 2 minutes slower than marathon pace",
   },
   {
     color: "pink",
     icon: GiftIcon,
-    title: "Open Source",
-    description: "List of all our open-source projects, it's all free.",
+    title: "steady",
+    description: "between easy and marathon pace",
   },
 ];
  
@@ -138,7 +138,7 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-normal">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4"
+              className="flex items-center gap-2 py-2 pr-4 outline-none"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
@@ -169,6 +169,91 @@ function NavListMenu() {
     </React.Fragment>
   );
 }
+
+function PlansMenu() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+  const plansMenuItems = [
+    {
+      color: "blue",
+      icon: CubeTransparentIcon,
+      title: "current plan",
+      description: "view your current plan details",
+      link: "/current-plan",
+    },
+    {
+      color: "orange",
+      icon: RocketLaunchIcon,
+      title: "get started",
+      description: "get started with yasso",
+      link: "/get-started",
+    },
+  ];
+
+  const renderItems = plansMenuItems.map(({ icon, title, description, color, link }, key) => (
+    <Link to={link} key={key}>
+      <MenuItem className="flex items-center gap-3 rounded-lg">
+        <div className={`rounded-lg p-5 ${colors[color]}`}>
+          {React.createElement(icon, { strokeWidth: 2, className: 'h-6 w-6' })}
+        </div>
+        <div>
+          <Typography variant="h6" color="blue-gray" className="flex items-center text-sm">
+            {title}
+          </Typography>
+          <Typography variant="small" color="gray" className="font-normal">
+            {description}
+          </Typography>
+        </div>
+      </MenuItem>
+    </Link>
+  ));
+
+  return (
+    <React.Fragment>
+      <Menu
+        open={isMenuOpen}
+        handler={setIsMenuOpen}
+        offset={{ mainAxis: 20 }}
+        placement="bottom"
+        allowHover={true}
+      >
+        <MenuHandler>
+          <Typography as="div" variant="small" className="font-normal">
+            <ListItem
+              className="flex items-center gap-2 py-2 pr-4 outline-none"
+              selected={isMenuOpen || isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+            >
+              <Square3Stack3DIcon className="h-[18px] w-[18px]" />
+              plans
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`hidden h-3 w-3 transition-transform lg:block ${
+                  isMenuOpen ? "rotate-180" : ""
+                }`}
+              />
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`block h-3 w-3 transition-transform lg:hidden ${
+                  isMobileMenuOpen ? "rotate-180" : ""
+                }`}
+              />
+            </ListItem>
+          </Typography>
+        </MenuHandler>
+        <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
+          <ul className="grid grid-cols-1 gap-y-2">{renderItems}</ul>
+        </MenuList>
+      </Menu>
+      <div className="block lg:hidden">
+        <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
+      </div>
+    </React.Fragment>
+  );
+}
+
+
  
 function NavList() {
   return (
@@ -188,15 +273,16 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
+      <PlansMenu />
     </List>
   );
 }
  
 function NavbarDefault() {
-  const { isLoggedIn, logOutUser } = useContext(AuthContext);  // ADD this line
+  const { isLoggedIn, logOutUser } = useContext(AuthContext);
   const [openNav, setOpenNav] = React.useState(false);
 
-  const handleLogout = () => {  // ADD this function
+  const handleLogout = () => { 
     logOutUser();
   };
 

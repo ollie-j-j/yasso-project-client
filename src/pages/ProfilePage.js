@@ -5,6 +5,7 @@ import { Button } from "@material-tailwind/react";
 import userService from '../services/user.service';
 import { Avatar } from "@material-tailwind/react";
 import "./ProfilePage.css"
+import "../App.css"
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
@@ -29,13 +30,13 @@ const ProfilePage = () => {
 
 return (
     <div>
-        <div className='container'>
+        <div className='profile-page-container'>
             <h1>Hello, {user.username}</h1>
             <Avatar
                 src={user.profileImage}
                 alt={`${user.username}'s avatar`}
                 withBorder={true}
-                className="p-0.5"
+                className="p-0.5 profile-page-avatar"
                 size="xl"
             />
             <Link to="/edit-profile">

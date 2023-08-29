@@ -32,10 +32,10 @@ const LogInForm = () => {
         <div className="login-container">
             <Card color="transparent" shadow={false}>
                 <Typography variant="h4" color="blue-gray">
-                    Login
+                    login
                 </Typography>
                 <Typography color="gray" className="mt-1 font-normal">
-                    Enter your credentials to login.
+                    enter your credentials to login
                 </Typography>
                 <div className="form-container">
                     <form className="-mt-9 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
@@ -44,12 +44,12 @@ const LogInForm = () => {
                             <Input type="password" size="lg" label="Password" name="password" value={user.password} onChange={handleChange} />
                         </div>
                         <Button className="mt-6" fullWidth type="submit">
-                            Login
+                            login
                         </Button>
                         <Typography color="gray" className="mt-4 text-center font-normal">
-                            Don't have an account?{" "}
+                            don't have an account?{" "}
                             <Link to="/signup" className="font-medium text-gray-900">
-                                Sign Up
+                                sign up
                             </Link>
                         </Typography>
                     </form>

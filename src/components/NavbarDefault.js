@@ -176,18 +176,18 @@ function PlansMenu() {
 
   const plansMenuItems = [
     {
+      color: "orange",
+      icon: RocketLaunchIcon,
+      title: "get started",
+      description: "get started with yasso",
+      link: "/onboarding",
+    },
+    {
       color: "blue",
       icon: CubeTransparentIcon,
       title: "current plan",
       description: "view your current plan details",
       link: "/current-plan",
-    },
-    {
-      color: "orange",
-      icon: RocketLaunchIcon,
-      title: "get started",
-      description: "get started with yasso",
-      link: "/get-started",
     },
   ];
 
@@ -258,13 +258,16 @@ function PlansMenu() {
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Typography variant="small" color="blue-gray" className="font-normal">
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <CubeTransparentIcon className="h-[18px] w-[18px]" />
-          dashboard
-        </ListItem>
-      </Typography>
+      <Link to="dashboard">
+        <Typography variant="small" color="blue-gray" className="font-normal">
+          <ListItem className="flex items-center gap-2 py-2 pr-4">
+            <CubeTransparentIcon className="h-[18px] w-[18px]" />
+            dashboard
+          </ListItem>
+        </Typography>
+      </Link>
       <NavListMenu />
+      <PlansMenu />
       <Link to="/profile">
         <Typography variant="small" color="blue-gray" className="font-normal">
           <ListItem className="flex items-center gap-2 py-2 pr-4">
@@ -273,7 +276,6 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
-      <PlansMenu />
     </List>
   );
 }

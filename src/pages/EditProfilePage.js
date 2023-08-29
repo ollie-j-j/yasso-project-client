@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EditProfileForm from '../components/EditProfileForm';
 import userService from '../services/user.service';
+import { Spinner } from "@material-tailwind/react";
 
 const EditProfilePage = () => {
     const [currentUser, setCurrentUser] = useState(null);
@@ -16,7 +17,11 @@ const EditProfilePage = () => {
     }, []);
 
     if (!currentUser) {
-        return <div>Loading...</div>;
+        return (
+            <div className="spinner-container">
+                <Spinner className="h-10 w-10" />
+            </div>
+        )
     }
 
     return (

@@ -1,0 +1,26 @@
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.text-container {
+    max-width: 300px;
+    margin-bottom: 0.5rem;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    margin: 0.5rem;
+}

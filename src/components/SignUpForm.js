@@ -33,10 +33,10 @@ const SignUpForm = () => {
         <div className='signup-container'>
             <Card color="transparent" shadow={false}>
                 <Typography variant="h4" color="blue-gray">
-                    Sign Up
+                    sign up
                 </Typography>
                 <Typography color="gray" className="mt-1 font-normal">
-                    Enter your details to register.
+                    enter your details to register
                 </Typography>
                 <div className='form-container'>
                     <form onSubmit={handleSubmit} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
@@ -65,12 +65,12 @@ const SignUpForm = () => {
                             />
                         </div>
                         <Button className="mt-6" fullWidth type="submit">
-                            Register
+                            register
                         </Button>
                         <Typography color="gray" className="mt-4 text-center font-normal">
-                            Already have an account?
+                            already have an account?{" "}
                             <Link to="/login" className="font-medium text-gray-900">
-                                Log In
+                                log In
                             </Link>
                         </Typography>
                     </form>

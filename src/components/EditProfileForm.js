@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './EditProfileForm.css';
 import {
     Card,
@@ -45,7 +46,7 @@ function EditProfileForm({ username, email, imageUrl }) {
         authMethods.editUser(data)
             .then(response => {
                 console.log(response);
-                navigate('/');
+                navigate('/profile');
             })
             .catch(error => {
                 console.error(error);
@@ -112,9 +113,9 @@ function EditProfileForm({ username, email, imageUrl }) {
                                 Choose File
                             </Button>
                         </div>
-                        <Button className="mt-6" type="submit" fullWidth>
-                            save
-                        </Button>
+                            <Button className="mt-6" type="submit" fullWidth>
+                                save
+                            </Button>
                     </form>
                 </div>
             </Card>

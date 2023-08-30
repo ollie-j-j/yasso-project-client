@@ -14,7 +14,10 @@ const signUp = ({ username, password, email }) => {
 
 const logIn = ({username, password}) => {
     return api.post("/auth/login", {username, password})
-                .then(response => response.data)
+                .then(response => {
+                    console.log('Response Data:', response.data);
+                    return response.data;
+                })
                 .catch(err => console.error(err))
 }
 

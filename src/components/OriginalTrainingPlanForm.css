@@ -2,10 +2,37 @@
     margin-top: 50px;
 }
 
+.save-button {
+    margin-bottom: 10rem;
+}
+
+.custom-dropdown {
+    z-index: 1000;
+}
+
+.max-h-72 {
+    max-height: 18rem;
+}
+
+.radio-container {
+    width: 100%;
+}
+
+.radio-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+
+/* .select-container {
+    margin-bottom: 15rem;
+} */
+
 /* .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40vh;
   } */
-  

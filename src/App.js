@@ -11,6 +11,7 @@ import IsAnon from './components/IsAnon';
 import IsPrivate from './components/IsPrivate';
 import DashboardPage from './pages/DashboardPage';
 import CurrentPlanPage from './pages/CurrentPlanPage';
+import OriginalTrainingPlanInputPage from './pages/OriginalTrainingPlanInputPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/dashboard" element={<IsPrivate><DashboardPage /></IsPrivate>} />
         <Route exact path="/current-plan" element={<IsPrivate><CurrentPlanPage /></IsPrivate>} />
         <Route exact path="/onboarding" element={<IsPrivate><GettingStartedPage /></IsPrivate>} />
+        <Route exact path="/onboarding/add-plan" element={<IsPrivate><OriginalTrainingPlanInputPage /></IsPrivate>} />
       </Routes>
 
     </div>

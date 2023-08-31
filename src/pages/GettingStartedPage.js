@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from "@material-tailwind/react";
+import { Link } from 'react-router-dom';
 import './GettingStartedPage.css';
 
 function GettingStartedPage() {
@@ -14,7 +15,7 @@ function GettingStartedPage() {
                 <p>add the details of your current plan to get started. don’t have a plan, yasso can generate one for you</p>
             </div>
             <div className='button-container'>
-                <Button className='button'>add plan</Button>
+                <Link to="add-plan"><Button className='button'>add plan</Button></Link>
                 <Button className='button' disabled>generate plan</Button>
             </div>
         </div>

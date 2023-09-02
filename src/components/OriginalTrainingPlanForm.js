@@ -96,6 +96,7 @@ function OriginalTrainingPlanForm() {
         <>
             <div className='w-1/3 mx-auto accordian-container'>
                 <h1>add your plan</h1>
+                <p>add your existing training plan to the form below</p>
                 <form onSubmit={handleSubmit}>
                     <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
                         <AccordionHeader onClick={() => handleOpen(1)}>Monday</AccordionHeader>
@@ -166,6 +167,13 @@ function OriginalTrainingPlanForm() {
                                             label="rest"
                                             value="rest"
                                             checked={trainingPlan.monday.typeOfSession === 'rest'}
+                                            onChange={handleChange}
+                                        />
+                                        <Radio
+                                            name="monday-typeOfSession"
+                                            label="recovery"
+                                            value="recovery"
+                                            checked={trainingPlan.monday.typeOfSession === 'recovery'}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -246,6 +254,13 @@ function OriginalTrainingPlanForm() {
                                             checked={trainingPlan.tuesday.typeOfSession === 'rest'}
                                             onChange={handleChange}
                                         />
+                                        <Radio
+                                            name="tuesday-typeOfSession"
+                                            label="recovery"
+                                            value="recovery"
+                                            checked={trainingPlan.tuesday.typeOfSession === 'recovery'}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -322,6 +337,13 @@ function OriginalTrainingPlanForm() {
                                             label="rest"
                                             value="rest"
                                             checked={trainingPlan.wednesday.typeOfSession === 'rest'}
+                                            onChange={handleChange}
+                                        />
+                                        <Radio
+                                            name="wednesday-typeOfSession"
+                                            label="recovery"
+                                            value="recovery"
+                                            checked={trainingPlan.wednesday.typeOfSession === 'recovery'}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -402,6 +424,13 @@ function OriginalTrainingPlanForm() {
                                             checked={trainingPlan.thursday.typeOfSession === 'rest'}
                                             onChange={handleChange}
                                         />
+                                        <Radio
+                                            name="thursday-typeOfSession"
+                                            label="recovery"
+                                            value="recovery"
+                                            checked={trainingPlan.thursday.typeOfSession === 'recovery'}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -478,6 +507,13 @@ function OriginalTrainingPlanForm() {
                                             label="rest"
                                             value="rest"
                                             checked={trainingPlan.friday.typeOfSession === 'rest'}
+                                            onChange={handleChange}
+                                        />
+                                        <Radio
+                                            name="friday-typeOfSession"
+                                            label="recovery"
+                                            value="recovery"
+                                            checked={trainingPlan.friday.typeOfSession === 'recovery'}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -558,6 +594,13 @@ function OriginalTrainingPlanForm() {
                                             checked={trainingPlan.saturday.typeOfSession === 'rest'}
                                             onChange={handleChange}
                                         />
+                                        <Radio
+                                            name="saturday-typeOfSession"
+                                            label="recovery"
+                                            value="recovery"
+                                            checked={trainingPlan.saturday.typeOfSession === 'recovery'}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -634,6 +677,13 @@ function OriginalTrainingPlanForm() {
                                             label="rest"
                                             value="rest"
                                             checked={trainingPlan.sunday.typeOfSession === 'rest'}
+                                            onChange={handleChange}
+                                        />
+                                        <Radio
+                                            name="sunday-typeOfSession"
+                                            label="recovery"
+                                            value="recovery"
+                                            checked={trainingPlan.sunday.typeOfSession === 'recovery'}
                                             onChange={handleChange}
                                         />
                                     </div>

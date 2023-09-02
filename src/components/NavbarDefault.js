@@ -187,7 +187,7 @@ function PlansMenu() {
       icon: CubeTransparentIcon,
       title: "current plan",
       description: "view your current plan details",
-      link: "/current-plan",
+      link: "/onboarding/plan-added/current-plan",
     },
   ];
 

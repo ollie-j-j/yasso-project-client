@@ -1,0 +1,9 @@
+.text-container {
+    text-align: center;
+}
+
+.current-plan-content .text-container {
+    margin: auto;
+    text-align: center;
+    margin-top: 3rem;
+}

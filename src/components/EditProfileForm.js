@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import './EditProfileForm.css';
 import {
     Card,
@@ -11,6 +10,7 @@ import {
     Avatar,
 } from "@material-tailwind/react";
 import authMethods from "../services/auth.service";
+import UpdateProfileDialog from "./UpdateProfileDialog";
 
 function EditProfileForm({ username, email, imageUrl }) {
     const [formData, setFormData] = useState({
@@ -19,6 +19,8 @@ function EditProfileForm({ username, email, imageUrl }) {
         image: null,
     });
     const navigate = useNavigate();
+
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -46,7 +48,8 @@ function EditProfileForm({ username, email, imageUrl }) {
         authMethods.editUser(data)
             .then(response => {
                 console.log(response);
-                navigate('/profile');
+                setDialogOpen(true);
+                navigate('/edit-profile');
             })
             .catch(error => {
                 console.error(error);
@@ -119,6 +122,7 @@ function EditProfileForm({ username, email, imageUrl }) {
                     </form>
                 </div>
             </Card>
+            <UpdateProfileDialog open={dialogOpen} handleOpen={() => setDialogOpen(!dialogOpen)} />
         </div>
     );
 }

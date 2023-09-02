@@ -1,0 +1,43 @@
+.edit-accordian-container {
+    margin-top: 1rem;
+}
+
+.save-button {
+    margin-bottom: 10rem;
+}
+
+.custom-dropdown {
+    z-index: 1000;
+}
+
+.max-h-72 {
+    max-height: 18rem;
+}
+
+.radio-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.run-staus-radio-container {
+    display: flex;
+    width: 100%;
+}
+
+.radio-button {
+    margin: none;
+    margin-right: 1rem;
+}
+
+
+/* .select-container {
+    margin-bottom: 15rem;
+} */
+
+/* .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+  } */

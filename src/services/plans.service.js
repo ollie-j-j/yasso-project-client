@@ -10,8 +10,26 @@ const addPlan = (trainingPlan, token) => {
   });
 };
 
+const updatePlan = (planId, updatedPlan, token) => {
+  return axios.put(`${API_URL}/api/training/original/update-plan/${planId}`, updatedPlan, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+};
+
+const getCurrentPlan = (token) => {
+  return axios.get(`${API_URL}/api/training/original/current-plan`, {
+      headers: {
+          'Authorization': `Bearer ${token}`,
+      },
+  });
+};
+
 const planMethods = {
     addPlan,
+    updatePlan,
+    getCurrentPlan,
 };
 
 export default planMethods;

@@ -5,8 +5,8 @@ import './GettingStartedPage.css';
 
 function GettingStartedPage() {
     return (
-        <div className="main-content">
-            <div className='text-container'>
+        <div className="getting-started-main-content">
+            <div className='getting-started-text-container'>
                 <h1>getting started</h1>
                 <p>yasso helps you create running training plans that shift with your circumstances.</p>
                 <br></br>
@@ -14,9 +14,9 @@ function GettingStartedPage() {
                 <br></br>
                 <p>add the details of your current plan to get started. don’t have a plan, yasso can generate one for you</p>
             </div>
-            <div className='button-container'>
-                <Link to="add-plan"><Button className='button'>add plan</Button></Link>
-                <Button className='button' disabled>generate plan</Button>
+            <div className='getting-started-button-container'>
+                <Link to="add-plan"><Button className='add-plan-button'>add plan</Button></Link>
+                <Button className='generate-plan-button' disabled>generate plan</Button>
             </div>
         </div>
   )

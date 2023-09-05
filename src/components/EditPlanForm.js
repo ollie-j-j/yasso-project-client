@@ -13,6 +13,7 @@ import {
     Radio,
 } from "@material-tailwind/react";
 import UpdateRunDialog from './UpdateRunDialog';
+import DeletePlanDialog from './DeletePlanDialog';
 
 function Icon({ id, open }) {
     return (
@@ -38,11 +39,13 @@ function EditPlanForm({ initialTrainingPlan }) {
 
     const [trainingPlan, setTrainingPlan] = useState(initialTrainingPlan);
 
-    const [dialogOpen, setDialogOpen] = useState(false);
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+    const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
+
 
     const navigate = useNavigate();
 
-    const { getToken } = useContext(AuthContext);
+    const { getToken, user } = useContext(AuthContext);
     const token = getToken();
 
 
@@ -107,7 +110,7 @@ function EditPlanForm({ initialTrainingPlan }) {
                 console.log('Before Update:', trainingPlan);
                 setTrainingPlan(response.data);
                 console.log('After Update:', trainingPlan);
-                setDialogOpen(true);
+                setUpdateDialogOpen(true);
                 navigate("/onboarding/plan-added/current-plan");
             })
             .catch(err => {
@@ -115,6 +118,25 @@ function EditPlanForm({ initialTrainingPlan }) {
                 console.error('Error Response:', err.response.data);
             });
     };
+
+
+    const handleDelete = (e) => {
+        if (e) e.preventDefault();
+        const userId = user._id;
+        planMethods.deletePlan(userId, token)
+            .then(response => {
+                console.log(response.data);
+                navigate('/onboarding/add-plan');
+                setDeleteDialogOpen(false);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+    
+
+
+
 
 
 
@@ -897,11 +919,21 @@ function EditPlanForm({ initialTrainingPlan }) {
                             </div>
                         </AccordionBody>
                     </Accordion>
-                    <Button className="mt-6 save-button" fullWidth type="submit">
-                        update plan
-                    </Button>
+                    <div className='button-container'>
+                        <Button className="mt-6" fullWidth type="submit">
+                            update plan
+                        </Button>
+                        <Button onClick={() => setDeleteDialogOpen(true)} className="mt-6" fullWidth>
+                            delete plan
+                        </Button>
+                    </div>
                 </form>
-                <UpdateRunDialog open={dialogOpen} handleOpen={() => setDialogOpen(!dialogOpen)} />
+                <DeletePlanDialog
+                    open={deleteDialogOpen}
+                    handleOpen={() => setDeleteDialogOpen(!deleteDialogOpen)}
+                    onConfirmDelete={handleDelete}
+                />
+                <UpdateRunDialog open={updateDialogOpen} handleOpen={() => setUpdateDialogOpen(!updateDialogOpen)} />
             </div>
         </>
     );

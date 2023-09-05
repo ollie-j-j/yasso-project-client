@@ -26,10 +26,19 @@ const getCurrentPlan = (token) => {
   });
 };
 
+const deletePlan = (userId, token) => {
+  return axios.delete(`${API_URL}/api/training/original/delete-plan/${userId}`, {
+      headers: {
+          'Authorization': `Bearer ${token}`,
+      },
+  });
+};
+
 const planMethods = {
     addPlan,
     updatePlan,
     getCurrentPlan,
+    deletePlan,
 };
 
 export default planMethods;

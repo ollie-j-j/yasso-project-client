@@ -34,11 +34,30 @@ const deletePlan = (userId, token) => {
   });
 };
 
+const revertPlan = (planId, token) => {
+  return axios.put(`${API_URL}/api/training/original/revert-plan/${planId}`, {}, {
+      headers: {
+          'Authorization': `Bearer ${token}`,
+      },
+  });
+};
+
+const getOriginalPlan = (token) => {
+  return axios.get(`${API_URL}/api/training/original/get-original-plan`, {
+      headers: {
+          'Authorization': `Bearer ${token}`,
+      },
+  });
+};
+
+
 const planMethods = {
     addPlan,
     updatePlan,
     getCurrentPlan,
     deletePlan,
+    revertPlan,
+    getOriginalPlan,
 };
 
 export default planMethods;

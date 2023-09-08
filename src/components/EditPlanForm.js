@@ -14,6 +14,7 @@ import {
 } from "@material-tailwind/react";
 import UpdateRunDialog from './UpdateRunDialog';
 import DeletePlanDialog from './DeletePlanDialog';
+import RevertPlanDialog from './RevertPlanDialog';
 
 function Icon({ id, open }) {
     return (
@@ -38,9 +39,12 @@ function EditPlanForm({ initialTrainingPlan }) {
     const [editedPlan, setEditedPlan] = useState(initialTrainingPlan);
 
     const [trainingPlan, setTrainingPlan] = useState(initialTrainingPlan);
+    const [originalPlan, setOriginalPlan] = useState(null);
+
 
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
+    const [revertDialogOpen, setRevertDialogOpen] = useState(false);
 
 
     const navigate = useNavigate();
@@ -133,10 +137,55 @@ function EditPlanForm({ initialTrainingPlan }) {
                 console.log(error);
             });
     };
+
+
+
+    useEffect(() => {
+        planMethods.getOriginalPlan(token)
+            .then(response => {
+                console.log("Original Plan Response:", response.data);
+                setOriginalPlan(response.data);
+                console.log("Original Plan after setting:", originalPlan);
+            })
+            .catch(error => {
+                console.error('Error fetching the original plan:', error);
+            });
+    }, [token]);
     
 
+    useEffect(() => {
+        console.log("Updated Original Plan:", originalPlan);
+    }, [originalPlan]);
 
+    
 
+    const handleRevert = (e) => {
+        console.log("handleRevert called");
+        if (e) e.preventDefault();
+        if (!originalPlan || !originalPlan.data || !originalPlan.data._id) {
+            console.error('Original plan or its ID is not set');
+            return;
+        }
+        const planId = originalPlan.data._id;
+        planMethods.revertPlan(planId, token)
+            .then(response => {
+                console.log(response.data);
+                planMethods.getCurrentPlan(token)
+                    .then(response => {
+                        const currentPlan = response.data;
+                        setTrainingPlan(currentPlan);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching the current plan:', error);
+                    });
+                navigate('/onboarding/plan-added/current-plan');
+                setRevertDialogOpen(false);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+    
 
 
 
@@ -926,14 +975,24 @@ function EditPlanForm({ initialTrainingPlan }) {
                         <Button onClick={() => setDeleteDialogOpen(true)} className="mt-6" fullWidth>
                             delete plan
                         </Button>
+                        <Button onClick={() => setRevertDialogOpen(true)} className="mt-6" fullWidth>
+                            revert to original
+                        </Button>
                     </div>
                 </form>
+                <UpdateRunDialog open={updateDialogOpen}
+                    handleOpen={() => setUpdateDialogOpen(!updateDialogOpen)}
+                />
                 <DeletePlanDialog
                     open={deleteDialogOpen}
                     handleOpen={() => setDeleteDialogOpen(!deleteDialogOpen)}
                     onConfirmDelete={handleDelete}
                 />
-                <UpdateRunDialog open={updateDialogOpen} handleOpen={() => setUpdateDialogOpen(!updateDialogOpen)} />
+                <RevertPlanDialog
+                    open={revertDialogOpen}
+                    handleOpen={() => setRevertDialogOpen(!revertDialogOpen)}
+                    onConfirmRevert={handleRevert}
+                />
             </div>
         </>
     );

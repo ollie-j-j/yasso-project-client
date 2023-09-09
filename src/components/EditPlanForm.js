@@ -145,7 +145,6 @@ function EditPlanForm({ initialTrainingPlan }) {
             .then(response => {
                 console.log("Original Plan Response:", response.data);
                 setOriginalPlan(response.data);
-                console.log("Original Plan after setting:", originalPlan);
             })
             .catch(error => {
                 console.error('Error fetching the original plan:', error);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5005';
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 const addPlan = (trainingPlan, token) => {
   return axios.post(`${API_URL}/api/training/original/add-plan`, trainingPlan, {

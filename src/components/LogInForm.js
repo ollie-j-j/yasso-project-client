@@ -21,6 +21,7 @@ const LogInForm = () => {
 
         authMethods.logIn(user)
             .then((tokenObject) => {
+                console.log("Server Response:", tokenObject);
                 storeToken(tokenObject.authToken)
                 authenticateUser()
                 navigate("/")

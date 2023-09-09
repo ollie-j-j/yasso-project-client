@@ -153,10 +153,6 @@ function EditPlanForm({ initialTrainingPlan }) {
     }, [token]);
     
 
-    useEffect(() => {
-        console.log("Updated Original Plan:", originalPlan);
-    }, [originalPlan]);
-
     
 
     const handleRevert = (e) => {

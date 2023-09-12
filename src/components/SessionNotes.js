@@ -1,4 +1,4 @@
-import { Card, Typography } from "@material-tailwind/react";
+import { Card, Typography, Chip } from "@material-tailwind/react";
 
 function SessionNotes({ data }) {
     console.log("Received data:", data);
@@ -40,30 +40,51 @@ function SessionNotes({ data }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {TABLE_ROWS.map(({ day, sessionNotes, status }, index) => {
-                        const isLast = index === TABLE_ROWS.length - 1;
-                        const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
-                        return (
-                            <tr key={day}>
-                                <td className={classes}>
-                                    <Typography variant="small" color="blue-gray" className="font-normal">
-                                        {day}
-                                    </Typography>
-                                </td>
-                                <td className={classes}>
-                                    <Typography variant="small" color="blue-gray" className="font-normal">
-                                        {sessionNotes}
-                                    </Typography>
-                                </td>
-                                <td className={classes}>
-                                    <Typography variant="small" color="blue-gray" className="font-normal">
-                                        {status}
-                                    </Typography>
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
+    {TABLE_ROWS.map(({ day, sessionNotes, status }, index) => {
+        const isLast = index === TABLE_ROWS.length - 1;
+        const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
+        
+        let chipColor;
+        switch (status) {
+            case "complete":
+                chipColor = "green";
+                break;
+            case "pending":
+                chipColor = "amber";
+                break;
+            case "missed":
+                chipColor = "red";
+                break;
+            default:
+                chipColor = "blue-gray";
+                break;
+        }
+        
+        return (
+            <tr key={day}>
+                <td className={classes}>
+                    <Typography variant="small" color="blue-gray" className="font-normal">
+                        {day}
+                    </Typography>
+                </td>
+                <td className={classes}>
+                    <Typography variant="small" color="blue-gray" className="font-normal">
+                        {sessionNotes}
+                    </Typography>
+                </td>
+                <td className={classes}>
+                    <Chip
+                        size="sm"
+                        variant="ghost"
+                        value={status}
+                        color={chipColor}
+                        className="inline-block mb-3.5"
+                    />
+                </td>
+            </tr>
+        );
+    })}
+</tbody>
             </table>
         </Card>
     );

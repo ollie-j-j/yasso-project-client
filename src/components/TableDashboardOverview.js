@@ -16,7 +16,7 @@ function TableDashboardOverview({ data }) {
 
   const TABLE_ROWS = [
     {
-      insight: "total distance",
+      insight: "total distance (miles)",
       data: `${totalDistanceCompleted} out of ${totalDistance}`,
     },
     {

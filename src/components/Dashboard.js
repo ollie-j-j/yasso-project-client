@@ -17,7 +17,7 @@ import SessionNotes from "./SessionNotes";
 function Dashboard() {
     const [trainingData, setTrainingData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { getToken, user } = useContext(AuthContext);
+    const { getToken } = useContext(AuthContext);
     const [token, setToken] = useState(null);
     const [selectedTab, setSelectedTab] = useState("dashboard");
 

@@ -13,6 +13,7 @@ import DashboardPage from './pages/DashboardPage';
 import CurrentPlanPage from './pages/CurrentPlanPage';
 import OriginalTrainingPlanInputPage from './pages/OriginalTrainingPlanInputPage';
 import PlanAddedPage from './pages/PlanAddedPage';
+import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
   return (

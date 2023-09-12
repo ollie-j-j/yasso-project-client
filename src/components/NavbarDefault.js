@@ -30,9 +30,10 @@ import {
   FaceSmileIcon,
   PuzzlePieceIcon,
   GiftIcon,
+  StarIcon,
 } from "@heroicons/react/24/outline";
 import { AuthContext } from "../context/auth.context";
- 
+
 const colors = {
   blue: "bg-blue-50 text-blue-500",
   orange: "bg-orange-50 text-orange-500",
@@ -43,7 +44,7 @@ const colors = {
   cyan: "bg-cyan-50 text-cyan-500",
   pink: "bg-pink-50 text-pink-500",
 };
- 
+
 const navListMenuItems = [
   {
     color: "blue",
@@ -105,11 +106,11 @@ const navListMenuItems = [
     description: "between easy and marathon pace",
   },
 ];
- 
+
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
- 
+
   const renderItems = navListMenuItems.map(({ icon, title, description, color }, key) => (
     <MenuItem key={key} className="flex items-center gap-3 rounded-lg">
       <div className={`rounded-lg p-5 ${colors[color]}`}>
@@ -125,7 +126,7 @@ function NavListMenu() {
       </div>
     </MenuItem>
   ));
- 
+
   return (
     <React.Fragment>
       <Menu
@@ -146,15 +147,13 @@ function NavListMenu() {
               glossary
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${
-                  isMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
+                  }`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${
-                  isMobileMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
+                  }`}
               />
             </ListItem>
           </Typography>
@@ -225,19 +224,17 @@ function PlansMenu() {
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
-              <Square3Stack3DIcon className="h-[18px] w-[18px]" />
+              <FolderIcon className="h-[18px] w-[18px]" />
               plans
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${
-                  isMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
+                  }`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${
-                  isMobileMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
+                  }`}
               />
             </ListItem>
           </Typography>
@@ -254,14 +251,14 @@ function PlansMenu() {
 }
 
 
- 
+
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
       <Link to="dashboard">
         <Typography variant="small" color="blue-gray" className="font-normal">
           <ListItem className="flex items-center gap-2 py-2 pr-4">
-            <CubeTransparentIcon className="h-[18px] w-[18px]" />
+            <StarIcon className="h-[18px] w-[18px]" />
             dashboard
           </ListItem>
         </Typography>
@@ -279,12 +276,12 @@ function NavList() {
     </List>
   );
 }
- 
+
 function NavbarDefault() {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
   const [openNav, setOpenNav] = React.useState(false);
 
-  const handleLogout = () => { 
+  const handleLogout = () => {
     logOutUser();
   };
 

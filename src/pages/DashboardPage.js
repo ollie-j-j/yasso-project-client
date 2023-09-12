@@ -1,11 +1,12 @@
 import React from 'react';
 import './DashboardPage.css';
+import Dashboard from '../components/Dashboard';
 
 function DashboardPage() {
     return (
-        <div className="main-content">
-            <div className='text-container'>
-                <h1>dashboard</h1>
+        <div className="dashboard-page-main-content">
+            <div>
+                <Dashboard />
             </div>
         </div>
   )

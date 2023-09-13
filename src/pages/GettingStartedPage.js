@@ -27,7 +27,7 @@ function GettingStartedPage() {
                 <div className='text-container'>
                     <h1>you already have a plan!</h1>
                     <p>click the button below to view your plan</p>
-                    <Link to="/onboarding/plan-added/current-plan"><Button>view plan</Button></Link>
+                    <Link to="/current-plan"><Button>view plan</Button></Link>
                 </div>
             </div>
         );

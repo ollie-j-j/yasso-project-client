@@ -10,3 +10,21 @@ h1 {
     font-size: 3rem;
     margin-bottom: 10px;
 }
+
+.home-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 4rem;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 70rem;
+    gap: 2rem;
+}

@@ -115,7 +115,7 @@ function EditPlanForm({ initialTrainingPlan }) {
                 setTrainingPlan(response.data);
                 console.log('After Update:', trainingPlan);
                 setUpdateDialogOpen(true);
-                navigate("/onboarding/plan-added/current-plan");
+                navigate("/current-plan");
             })
             .catch(err => {
                 console.error('Error:', err);
@@ -173,7 +173,7 @@ function EditPlanForm({ initialTrainingPlan }) {
                     .catch(error => {
                         console.error('Error fetching the current plan:', error);
                     });
-                navigate('/onboarding/plan-added/current-plan');
+                navigate('/current-plan');
                 setRevertDialogOpen(false);
             })
             .catch(error => {

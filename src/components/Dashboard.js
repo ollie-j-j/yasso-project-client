@@ -14,6 +14,7 @@ import {
 import TableDashboardOverview from "./TableDashboardOverview";
 import SessionNotes from "./SessionNotes";
 
+
 function Dashboard() {
     const [trainingData, setTrainingData] = useState(null);
     const [loading, setLoading] = useState(true);

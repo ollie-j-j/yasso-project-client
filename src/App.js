@@ -13,6 +13,7 @@ import DashboardPage from './pages/DashboardPage';
 import CurrentPlanPage from './pages/CurrentPlanPage';
 import OriginalTrainingPlanInputPage from './pages/OriginalTrainingPlanInputPage';
 import PlanAddedPage from './pages/PlanAddedPage';
+import LearnPage from './pages/LearnPage';
 import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
@@ -27,10 +28,12 @@ function App() {
         <Route exact path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />
         <Route exact path="/edit-profile" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
         <Route exact path="/dashboard" element={<IsPrivate><DashboardPage /></IsPrivate>} />
-        <Route exact path="/onboarding/plan-added/current-plan" element={<IsPrivate><CurrentPlanPage /></IsPrivate>} />
+        <Route exact path="/learn" element={<IsPrivate><LearnPage /></IsPrivate>} />
+        <Route exact path="/current-plan" element={<IsPrivate><CurrentPlanPage /></IsPrivate>} />
         <Route exact path="/onboarding" element={<IsPrivate><GettingStartedPage /></IsPrivate>} />
         <Route exact path="/onboarding/add-plan" element={<IsPrivate><OriginalTrainingPlanInputPage /></IsPrivate>} />
         <Route exact path="/onboarding/plan-added" element={<IsPrivate><PlanAddedPage /></IsPrivate>} />
+
       </Routes>
 
     </div>

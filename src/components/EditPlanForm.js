@@ -964,13 +964,13 @@ function EditPlanForm({ initialTrainingPlan }) {
                         </AccordionBody>
                     </Accordion>
                     <div className='button-container'>
-                        <Button className="mt-6" fullWidth type="submit">
+                        <Button className="mt-6 lowercase text-sm" fullWidth type="submit">
                             update plan
                         </Button>
-                        <Button onClick={() => setDeleteDialogOpen(true)} className="mt-6" fullWidth>
+                        <Button onClick={() => setDeleteDialogOpen(true)} className="mt-6 lowercase text-sm" fullWidth>
                             delete plan
                         </Button>
-                        <Button onClick={() => setRevertDialogOpen(true)} className="mt-6" fullWidth>
+                        <Button onClick={() => setRevertDialogOpen(true)} className="mt-6 lowercase text-sm" fullWidth>
                             revert to original
                         </Button>
                     </div>

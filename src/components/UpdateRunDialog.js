@@ -11,12 +11,12 @@ function UpdateRunDialog({ open, handleOpen }) {
 
     return (
         <Dialog open={open} handler={handleOpen}>
-            <DialogHeader>Plan successfully updated</DialogHeader>
+            <DialogHeader>plan successfully updated</DialogHeader>
             <DialogBody divider>
-                Your plan has been updated, well done!
+                your plan has been updated, well done!
             </DialogBody>
             <DialogFooter>
-                <Button onClick={handleOpen}>
+                <Button className="lowercase text-sm" onClick={handleOpen}>
                     <span>Confirm</span>
                 </Button>
             </DialogFooter>

@@ -43,14 +43,14 @@ const SignUpForm = () => {
                         <div className="mb-4 flex flex-col gap-6">
                             <Input
                                 size="lg"
-                                label="Username"
+                                label="username"
                                 name="username"
                                 value={user.username}
                                 onChange={handleChange}
                             />
                             <Input
                                 size="lg"
-                                label="Email"
+                                label="email"
                                 name="email"
                                 value={user.email}
                                 onChange={handleChange}
@@ -58,13 +58,13 @@ const SignUpForm = () => {
                             <Input
                                 type="password"
                                 size="lg"
-                                label="Password"
+                                label="password"
                                 name="password"
                                 value={user.password}
                                 onChange={handleChange}
                             />
                         </div>
-                        <Button className="mt-6" fullWidth type="submit">
+                        <Button className="mt-6 lowercase text-sm" fullWidth type="submit">
                             register
                         </Button>
                         <Typography color="gray" className="mt-4 text-center font-normal">

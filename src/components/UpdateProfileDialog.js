@@ -13,13 +13,13 @@ function UpdateProfileDialog({ open, handleOpen }) {
 
     return (
         <Dialog open={open} handler={handleOpen}>
-            <DialogHeader>Profile successfully updated</DialogHeader>
+            <DialogHeader>profile successfully updated</DialogHeader>
             <DialogBody divider>
-                Your profile has been updated, well done!
+                your profile has been updated, well done!
             </DialogBody>
             <DialogFooter>
                 <Link to="/profile">
-                    <Button onClick={handleOpen}>
+                    <Button className="lowercase text-sm" onClick={handleOpen}>
                         <span>Return to profile</span>
                     </Button>
                 </Link>

@@ -40,7 +40,7 @@ return (
                 size="xl"
             />
             <Link to="/edit-profile">
-                <Button className='button'>Edit Profile</Button>
+                <Button className='button lowercase text-sm'>Edit Profile</Button>
             </Link>
         </div>
     </div>

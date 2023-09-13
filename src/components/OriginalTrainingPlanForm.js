@@ -691,7 +691,7 @@ function OriginalTrainingPlanForm() {
                             </div>
                         </AccordionBody>
                     </Accordion>
-                    <Button className="mt-6 save-button" fullWidth type="submit">
+                    <Button className="mt-6 save-button lowercase text-sm" fullWidth type="submit">
                         save
                     </Button>
                 </form>

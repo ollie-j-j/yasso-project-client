@@ -44,8 +44,8 @@ function GettingStartedPage() {
                     <p>add the details of your current plan to get started. don’t have a plan, yasso can generate one for you</p>
                 </div>
                 <div className='getting-started-button-container'>
-                    <Link to="add-plan"><Button className='add-plan-button'>add plan</Button></Link>
-                    <Button className='generate-plan-button' disabled>generate plan</Button>
+                    <Link to="add-plan"><Button className='add-plan-button lowercase text-sm'>add plan</Button></Link>
+                    <Button className='generate-plan-button lowercase text-sm' disabled>generate plan</Button>
                 </div>
             </div>
         )

@@ -97,7 +97,7 @@ function EditProfileForm({ username, email, imageUrl }) {
                                 accept="image/*"
                                 onChange={handleImageChange}
                                 style={{ display: 'none' }} />
-                            <Button variant="gradient" className="flex items-center justify-center gap-3" onClick={handleButtonClick}>
+                            <Button variant="gradient" className="flex items-center justify-center gap-3 lowercase text-sm" onClick={handleButtonClick}>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -116,7 +116,7 @@ function EditProfileForm({ username, email, imageUrl }) {
                                 Choose File
                             </Button>
                         </div>
-                            <Button className="mt-6" type="submit" fullWidth>
+                            <Button className="mt-6 lowercase text-sm" type="submit" fullWidth>
                                 save
                             </Button>
                     </form>

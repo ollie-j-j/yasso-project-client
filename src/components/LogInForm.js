@@ -41,10 +41,10 @@ const LogInForm = () => {
                 <div className="form-container">
                     <form className="-mt-9 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
                         <div className="mb-4 flex flex-col gap-6">
-                            <Input size="lg" label="Username" name="username" value={user.username} onChange={handleChange} />
-                            <Input type="password" size="lg" label="Password" name="password" value={user.password} onChange={handleChange} />
+                            <Input size="lg" label="username" name="username" value={user.username} onChange={handleChange} />
+                            <Input type="password" size="lg" label="password" name="password" value={user.password} onChange={handleChange} />
                         </div>
-                        <Button className="mt-6" fullWidth type="submit">
+                        <Button className="mt-6 lowercase text-sm" fullWidth type="submit">
                             login
                         </Button>
                         <Typography color="gray" className="mt-4 text-center font-normal">

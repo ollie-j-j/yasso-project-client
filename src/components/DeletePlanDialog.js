@@ -16,20 +16,20 @@ function DeletePlanDialog({ open, handleOpen, onConfirmDelete }) {
 
     return (
         <Dialog open={open} handler={handleOpen}>
-            <DialogHeader>Delete plan</DialogHeader>
+            <DialogHeader>delete plan</DialogHeader>
             <DialogBody divider>
-                Are you sure you want to delete the plan? If you do, you will be redirected to the add plan page where you can insert a new plan
+                are you sure you want to delete the plan? If you do, you will be redirected to the add plan page where you can insert a new plan
             </DialogBody>
             <DialogFooter>
                 <Button
                     variant="text"
                     color="red"
                     onClick={handleOpen}
-                    className="mr-1"
+                    className="mr-1 lowercase text-sm"
                 >
                     <span>Cancel</span>
                 </Button>
-                <Button onClick={handleConfirm}>
+                <Button onClick={handleConfirm} className="lowercase text-sm">
                     <span>Confirm</span>
                 </Button>
             </DialogFooter>

@@ -23,8 +23,8 @@ function PlanAddedPage() {
                 <p>Click on the update availability button to have yasso update your training plan according to your schedule</p>
             </div>
             <div className='plan-added-button-container'>
-                <Link to="current-plan"><Button className='view-plan-button'>view plan</Button></Link>
-                <Link to="update-availability"><Button className='update-plan-button' disabled>update availability</Button></Link>
+                <Link to="/current-plan"><Button className='view-plan-button lowercase text-sm'>view plan</Button></Link>
+                <Link to="update-availability"><Button className='update-plan-button lowercase text-sm' disabled>update availability</Button></Link>
             </div>
         </div>
     )

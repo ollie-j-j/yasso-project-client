@@ -18,18 +18,18 @@ function RevertPlanDialog({ open, handleOpen, onConfirmRevert }) {
         <Dialog open={open} handler={handleOpen}>
             <DialogHeader>revert plan</DialogHeader>
             <DialogBody divider>
-                Are you sure you want to revert the plan to it's original state?
+                are you sure you want to revert the plan to it's original state?
             </DialogBody>
             <DialogFooter>
                 <Button
                     variant="text"
                     color="red"
                     onClick={handleOpen}
-                    className="mr-1"
+                    className="mr-1 lowercase text-sm"
                 >
                     <span>Cancel</span>
                 </Button>
-                <Button onClick={() => {
+                <Button className="lowercase text-sm" onClick={() => {
                     console.log("Confirm button clicked in dialog");
                     handleConfirm();
                 }}>

@@ -302,18 +302,18 @@ function NavbarDefault() {
         </div>
         <div className="hidden gap-2 lg:flex">
           {isLoggedIn ? (
-            <Button variant="text" size="sm" color="blue-gray" onClick={handleLogout}>
+            <Button variant="text" size="md" color="blue-gray" onClick={handleLogout} className="lowercase">
               log out
             </Button>
           ) : (
             <>
               <Link to="/login">
-                <Button variant="text" size="sm" color="blue-gray">
+                <Button variant="text" size="md" color="blue-gray" className="lowercase">
                   log in
                 </Button>
               </Link>
               <Link to="/signup">
-                <Button variant="gradient" size="sm">
+                <Button variant="gradient" size="md" className="lowercase">
                   sign up
                 </Button>
               </Link>

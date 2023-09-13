@@ -25,7 +25,6 @@ function DashboardCard({color = 'blue'}) {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <a href="#" className="inline-block">
             <Link to="/dashboard">
                 <Button size="sm" variant="text" className="flex items-center gap-2 lowercase text-sm">
                   Learn More
@@ -45,7 +44,6 @@ function DashboardCard({color = 'blue'}) {
                   </svg>
                 </Button>
             </Link>
-          </a>
         </CardFooter>
       </Card>
     );

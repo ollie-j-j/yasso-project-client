@@ -26,7 +26,6 @@ function ProfileCard({color = 'purple'}) {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <a href="#" className="inline-block">
             <Link to="/profile">
               <Button size="sm" variant="text" className="flex items-center gap-2 lowercase text-sm">
                 Learn More
@@ -46,7 +45,6 @@ function ProfileCard({color = 'purple'}) {
                 </svg>
               </Button>
             </Link>
-          </a>
         </CardFooter>
       </Card>
     );

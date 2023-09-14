@@ -153,9 +153,6 @@ function NavList() {
   );
 }
 
-
-{/* <NavListMenu /> */}
-
 function NavbarDefault() {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
   const [openNav, setOpenNav] = React.useState(false);

@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# yasso
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+yasso is a running planning app that helps runners easily adapt and modify their training plan, keep a training diary and have an overview of their progress.
 
-In the project directory, you can run:
+## User Stories
 
-### `npm start`
+-  **Signup:** As an anon, I can sign up on the platform so that I can start adding my running plan
+-  **Login:** As a user I can login to the platform so that I can see my running plan
+-  **Logout:** As a user I can logout from the platform so no one else can use it
+-  **Profile:** As a user I want to be able to update my details and add a profile picture
+-  **Add Plan** As a user I can add a running plan so that I can keep a track of it and know my next session
+-  **Update Plan** As a user I want to mark a session as complete once I finish it
+-  **View Progress** As a user I want to have an overview of my running for the week to see how I am progressing
+-  **Learn** As a user I want to learn about the different runs in my training plan
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Backlog
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Plans:
+- Training plans created that users can select
+- Dynamic updates of plans based on user availability
+- GPS data upload for runs
+- Multi week training plans
 
-### `npm test`
+Dashboard:
+- Running streak to gamify progress
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Styling:
+- Light/Dark theme
 
-### `npm run build`
+Learn:
+- Add additional resources
+  
+# Client
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Routes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- / - Homepage
+- /auth/signup - Signup form
+- /auth/login - Login form
+- /onboarding - Onboarding
+- /onboarding/add-plan - Create plan
+- /onboarding/plan-added - Plan added
+- /current-plan - View and edit plan
+- /dashboard - Dashboard
+- /learn - Learn
+- /profile - User details
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Pages
 
-### `npm run eject`
+- Home Page (public)
+- Sign in Page (anon only)
+- Log in Page (anon only)
+- Onboarding
+- Add plan
+- Plan added
+- View plan
+- Dashboard
+- Learn
+- Profile
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Components
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Component folders:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Authentication
+- Dashboard
+- Dialogs
+- HomePage
+- Learn
+- Navbar
+- Plans
+- RouteGuards
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Services
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Auth Service
+    - signUp
+    - logIn
+    - verifyToken
+    - uploadPhoto,
+    - getCurrentUser
+    - editUser
+- Plans Service
+    - addPlan
+    - updatePlan
+    - getCurrentPlan
+    - deletePlan
+    - revertPlan
+    - getOriginalPlan
+- User Service
+    - getProfile
+    - updateProfile
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Server
 
-### Code Splitting
+## Models
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- User model
+- OriginalTrainingPlan model
 
-### Analyzing the Bundle Size
+## API Endpoints/Backend Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- GET - /auth/me
+- POST - /auth/signup
+- POST - /auth/login
+- POST - /auth/logout
+- POST - /api/training/original/add-plan
+- GET - /api/training/original/current-plan
+- GET - /api/training/original/get-original-plan
+- PUT - /api/training/original/update-plan/:id
+- PUT - /api/training/original/revert-plan/:planId
+- DELETE - /api/training/original/delete-plan/:userId
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Links
 
-### Advanced Configuration
+[Client repository](https://github.com/ollie-j-j/yasso-project-client/tree/main)
+[Server repository Link](https://github.com/ollie-j-j/yasso-project-server)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Link to yasso](https://yasso-run.netlify.app/)

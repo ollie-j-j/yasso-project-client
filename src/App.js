@@ -1,14 +1,14 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import NavbarDefault from './components/NavbarDefault';
+import NavbarDefault from './components/Navbar/NavbarDefault';
 import SignUpPage from './pages/SignUpPage';
 import LogInPage from './pages/LogInPage';
 import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
 import GettingStartedPage from './pages/GettingStartedPage';
-import IsAnon from './components/IsAnon';
-import IsPrivate from './components/IsPrivate';
+import IsAnon from './components/RouteGuards/IsAnon';
+import IsPrivate from './components/RouteGuards/IsPrivate';
 import DashboardPage from './pages/DashboardPage';
 import CurrentPlanPage from './pages/CurrentPlanPage';
 import OriginalTrainingPlanInputPage from './pages/OriginalTrainingPlanInputPage';

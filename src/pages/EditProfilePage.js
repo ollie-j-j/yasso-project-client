@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EditProfileForm from '../components/EditProfileForm';
+import EditProfileForm from '../components/Plans/EditProfileForm';
 import userService from '../services/user.service';
 import { Spinner } from "@material-tailwind/react";
 

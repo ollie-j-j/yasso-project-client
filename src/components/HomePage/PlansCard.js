@@ -27,7 +27,7 @@ function PlansCard({color = 'green'}) {
         <CardFooter className="pt-0">
             <Link to="/current-plan">
               <Button size="sm" variant="text" className="flex items-center gap-2 lowercase text-sm">
-                Learn More
+                view plans
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

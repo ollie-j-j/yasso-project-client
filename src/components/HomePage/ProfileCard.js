@@ -28,7 +28,7 @@ function ProfileCard({color = 'purple'}) {
         <CardFooter className="pt-0">
             <Link to="/profile">
               <Button size="sm" variant="text" className="flex items-center gap-2 lowercase text-sm">
-                Learn More
+                view profile
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

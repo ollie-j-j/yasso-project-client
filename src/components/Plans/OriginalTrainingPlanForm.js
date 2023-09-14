@@ -1,9 +1,9 @@
 import React from 'react';
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import planMethods from "../services/plans.service";
-import './EditPlanForm.css';
+import { AuthContext } from "../../context/auth.context";
+import planMethods from "../../services/plans.service";
+import './OriginalTrainingPlanForm.css';
 import {
     Accordion,
     AccordionHeader,
@@ -12,9 +12,6 @@ import {
     Button,
     Radio,
 } from "@material-tailwind/react";
-import UpdateRunDialog from './UpdateRunDialog';
-import DeletePlanDialog from './DeletePlanDialog';
-import RevertPlanDialog from './RevertPlanDialog';
 
 function Icon({ id, open }) {
     return (
@@ -31,50 +28,26 @@ function Icon({ id, open }) {
     );
 }
 
-function EditPlanForm({ initialTrainingPlan }) {
-    console.log('Rendering EditPlanForm');
+function OriginalTrainingPlanForm() {
 
     const [open, setOpen] = React.useState(0);
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
-    const [editedPlan, setEditedPlan] = useState(initialTrainingPlan);
 
-    const [trainingPlan, setTrainingPlan] = useState(initialTrainingPlan);
-    const [originalPlan, setOriginalPlan] = useState(null);
-
-
-    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-    const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
-    const [revertDialogOpen, setRevertDialogOpen] = useState(false);
-
+    const [trainingPlan, setTrainingPlan] = useState({
+        monday: { distance: '', typeOfSession: '', sessionDetails: '' },
+        tuesday: { distance: '', typeOfSession: '', sessionDetails: '' },
+        wednesday: { distance: '', typeOfSession: '', sessionDetails: '' },
+        thursday: { distance: '', typeOfSession: '', sessionDetails: '' },
+        friday: { distance: '', typeOfSession: '', sessionDetails: '' },
+        saturday: { distance: '', typeOfSession: '', sessionDetails: '' },
+        sunday: { distance: '', typeOfSession: '', sessionDetails: '' },
+    });
 
     const navigate = useNavigate();
-
-    const { getToken, user } = useContext(AuthContext);
-    const token = getToken();
-
-
-    useEffect(() => {
-        planMethods.getCurrentPlan(token)
-            .then(response => {
-                const currentPlan = response.data;
-                setTrainingPlan(currentPlan);
-            })
-            .catch(error => {
-                console.error('Error fetching the current plan:', error);
-            });
-    }, [token]);
-
-
-
-    useEffect(() => {
-        console.log('Updating editedPlan with new trainingPlan');
-        setEditedPlan(trainingPlan);
-    }, [trainingPlan]);
 
 
 
     const handleChange = (e) => {
-        console.log('handleChange called');
         let day, field, value;
         day = e.target.name.split('-')[0];
         field = e.target.name.split('-')[1];
@@ -96,26 +69,21 @@ function EditPlanForm({ initialTrainingPlan }) {
 
 
 
+    const { getToken } = useContext(AuthContext);
+    const token = getToken();
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
-        console.log('Edited Plan:', editedPlan);
+        console.log('Training Plan:', trainingPlan);
         console.log('Token:', token);
 
-
-        const planId = trainingPlan._id;
-
-        planMethods.updatePlan(planId, editedPlan, token)
+        planMethods.addPlan(trainingPlan, token)
             .then((response) => {
-                console.log('Training plan updated successfully:', response);
-                console.log('Response Data:', response.data);
-                console.log('Before Update:', trainingPlan);
-                setTrainingPlan(response.data);
-                console.log('After Update:', trainingPlan);
-                setUpdateDialogOpen(true);
-                navigate("/current-plan");
+                console.log('Training plan saved successfully:', response);
+                navigate("/onboarding/plan-added");
             })
             .catch(err => {
                 console.error('Error:', err);
@@ -124,69 +92,11 @@ function EditPlanForm({ initialTrainingPlan }) {
     };
 
 
-    const handleDelete = (e) => {
-        if (e) e.preventDefault();
-        const userId = user._id;
-        planMethods.deletePlan(userId, token)
-            .then(response => {
-                console.log(response.data);
-                navigate('/onboarding/add-plan');
-                setDeleteDialogOpen(false);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
-
-
-
-    useEffect(() => {
-        planMethods.getOriginalPlan(token)
-            .then(response => {
-                console.log("Original Plan Response:", response.data);
-                setOriginalPlan(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching the original plan:', error);
-            });
-    }, [token]);
-    
-
-    
-
-    const handleRevert = (e) => {
-        console.log("handleRevert called");
-        if (e) e.preventDefault();
-        if (!originalPlan || !originalPlan.data || !originalPlan.data._id) {
-            console.error('Original plan or its ID is not set');
-            return;
-        }
-        const planId = originalPlan.data._id;
-        planMethods.revertPlan(planId, token)
-            .then(response => {
-                console.log(response.data);
-                planMethods.getCurrentPlan(token)
-                    .then(response => {
-                        const currentPlan = response.data;
-                        setTrainingPlan(currentPlan);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching the current plan:', error);
-                    });
-                navigate('/current-plan');
-                setRevertDialogOpen(false);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
-    
-
-
-
     return (
         <>
-            <div className='w-1/3 mx-auto edit-accordian-container'>
+            <div className='w-1/3 mx-auto accordian-container'>
+                <h1>add your plan</h1>
+                <p>add your existing training plan to the form below</p>
                 <form onSubmit={handleSubmit}>
                     <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
                         <AccordionHeader onClick={() => handleOpen(1)}>Monday</AccordionHeader>
@@ -264,32 +174,6 @@ function EditPlanForm({ initialTrainingPlan }) {
                                             label="recovery"
                                             value="recovery"
                                             checked={trainingPlan.monday.typeOfSession === 'recovery'}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-                                <Input size="lg" label="Session Notes" name="monday-sessionNotes" value={trainingPlan.monday.sessionNotes} onChange={handleChange} />
-                                <div className="run-status-radio-container" name="monday-status">
-                                    <div className="radio-button">
-                                        <Radio
-                                            name="monday-status"
-                                            label="pending"
-                                            value="pending"
-                                            checked={trainingPlan.monday.status === 'pending'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="monday-status"
-                                            label="complete"
-                                            value="complete"
-                                            checked={trainingPlan.monday.status === 'complete'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="monday-status"
-                                            label="missed"
-                                            value="missed"
-                                            checked={trainingPlan.monday.status === 'missed'}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -379,32 +263,6 @@ function EditPlanForm({ initialTrainingPlan }) {
                                         />
                                     </div>
                                 </div>
-                                <Input size="lg" label="Session Notes" name="tuesday-sessionNotes" value={trainingPlan.tuesday.sessionNotes} onChange={handleChange} />
-                                <div className="run-status-radio-container" name="tuesday-status">
-                                    <div className="radio-button">
-                                        <Radio
-                                            name="tuesday-status"
-                                            label="pending"
-                                            value="pending"
-                                            checked={trainingPlan.tuesday.status === 'pending'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="tuesday-status"
-                                            label="complete"
-                                            value="complete"
-                                            checked={trainingPlan.tuesday.status === 'complete'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="tuesday-status"
-                                            label="missed"
-                                            value="missed"
-                                            checked={trainingPlan.tuesday.status === 'missed'}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </AccordionBody>
                     </Accordion>
@@ -486,32 +344,6 @@ function EditPlanForm({ initialTrainingPlan }) {
                                             label="recovery"
                                             value="recovery"
                                             checked={trainingPlan.wednesday.typeOfSession === 'recovery'}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-                                <Input size="lg" label="Session Notes" name="wednesday-sessionNotes" value={trainingPlan.wednesday.sessionNotes} onChange={handleChange} />
-                                <div className="run-status-radio-container" name="wednesday-status">
-                                    <div className="radio-button">
-                                        <Radio
-                                            name="wednesday-status"
-                                            label="pending"
-                                            value="pending"
-                                            checked={trainingPlan.wednesday.status === 'pending'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="wednesday-status"
-                                            label="complete"
-                                            value="complete"
-                                            checked={trainingPlan.wednesday.status === 'complete'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="wednesday-status"
-                                            label="missed"
-                                            value="missed"
-                                            checked={trainingPlan.wednesday.status === 'missed'}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -601,32 +433,6 @@ function EditPlanForm({ initialTrainingPlan }) {
                                         />
                                     </div>
                                 </div>
-                                <Input size="lg" label="Session Notes" name="thursday-sessionNotes" value={trainingPlan.thursday.sessionNotes} onChange={handleChange} />
-                                <div className="run-status-radio-container" name="thursday-status">
-                                    <div className="radio-button">
-                                        <Radio
-                                            name="thursday-status"
-                                            label="pending"
-                                            value="pending"
-                                            checked={trainingPlan.thursday.status === 'pending'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="thursday-status"
-                                            label="complete"
-                                            value="complete"
-                                            checked={trainingPlan.thursday.status === 'complete'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="thursday-status"
-                                            label="missed"
-                                            value="missed"
-                                            checked={trainingPlan.thursday.status === 'missed'}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </AccordionBody>
                     </Accordion>
@@ -708,32 +514,6 @@ function EditPlanForm({ initialTrainingPlan }) {
                                             label="recovery"
                                             value="recovery"
                                             checked={trainingPlan.friday.typeOfSession === 'recovery'}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-                                <Input size="lg" label="Session Notes" name="friday-sessionNotes" value={trainingPlan.friday.sessionNotes} onChange={handleChange} />
-                                <div className="run-status-radio-container" name="friday-status">
-                                    <div className="radio-button">
-                                        <Radio
-                                            name="friday-status"
-                                            label="pending"
-                                            value="pending"
-                                            checked={trainingPlan.friday.status === 'pending'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="friday-status"
-                                            label="complete"
-                                            value="complete"
-                                            checked={trainingPlan.friday.status === 'complete'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="friday-status"
-                                            label="missed"
-                                            value="missed"
-                                            checked={trainingPlan.friday.status === 'missed'}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -823,32 +603,6 @@ function EditPlanForm({ initialTrainingPlan }) {
                                         />
                                     </div>
                                 </div>
-                                <Input size="lg" label="Session Notes" name="saturday-sessionNotes" value={trainingPlan.saturday.sessionNotes} onChange={handleChange} />
-                                <div className="run-status-radio-container" name="saturday-status">
-                                    <div className="radio-button">
-                                        <Radio
-                                            name="saturday-status"
-                                            label="pending"
-                                            value="pending"
-                                            checked={trainingPlan.saturday.status === 'pending'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="saturday-status"
-                                            label="complete"
-                                            value="complete"
-                                            checked={trainingPlan.saturday.status === 'complete'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="saturday-status"
-                                            label="missed"
-                                            value="missed"
-                                            checked={trainingPlan.saturday.status === 'missed'}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </AccordionBody>
                     </Accordion>
@@ -934,63 +688,16 @@ function EditPlanForm({ initialTrainingPlan }) {
                                         />
                                     </div>
                                 </div>
-                                <Input size="lg" label="Session Notes" name="sunday-sessionNotes" value={trainingPlan.sunday.sessionNotes} onChange={handleChange} />
-                                <div className="run-status-radio-container" name="sunday-status">
-                                    <div className="radio-button">
-                                        <Radio
-                                            name="sunday-status"
-                                            label="pending"
-                                            value="pending"
-                                            checked={trainingPlan.sunday.status === 'pending'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="sunday-status"
-                                            label="complete"
-                                            value="complete"
-                                            checked={trainingPlan.sunday.status === 'complete'}
-                                            onChange={handleChange}
-                                        />
-                                        <Radio
-                                            name="sunday-status"
-                                            label="missed"
-                                            value="missed"
-                                            checked={trainingPlan.sunday.status === 'missed'}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </AccordionBody>
                     </Accordion>
-                    <div className='button-container'>
-                        <Button className="mt-6 lowercase text-sm" fullWidth type="submit">
-                            update plan
-                        </Button>
-                        <Button onClick={() => setDeleteDialogOpen(true)} className="mt-6 lowercase text-sm" fullWidth>
-                            delete plan
-                        </Button>
-                        <Button onClick={() => setRevertDialogOpen(true)} className="mt-6 lowercase text-sm" fullWidth>
-                            revert to original
-                        </Button>
-                    </div>
+                    <Button className="mt-6 save-button lowercase text-sm" fullWidth type="submit">
+                        save
+                    </Button>
                 </form>
-                <UpdateRunDialog open={updateDialogOpen}
-                    handleOpen={() => setUpdateDialogOpen(!updateDialogOpen)}
-                />
-                <DeletePlanDialog
-                    open={deleteDialogOpen}
-                    handleOpen={() => setDeleteDialogOpen(!deleteDialogOpen)}
-                    onConfirmDelete={handleDelete}
-                />
-                <RevertPlanDialog
-                    open={revertDialogOpen}
-                    handleOpen={() => setRevertDialogOpen(!revertDialogOpen)}
-                    onConfirmRevert={handleRevert}
-                />
             </div>
         </>
     );
 }
 
-export default EditPlanForm;
+export default OriginalTrainingPlanForm;

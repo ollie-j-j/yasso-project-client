@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './CurrentPlanPage.css';
-import EditPlanForm from '../components/EditPlanForm';
+import EditPlanForm from '../components/Plans/EditPlanForm';
 import planMethods from '../services/plans.service';
 import { AuthContext } from "../context/auth.context";
 import { Button } from '@material-tailwind/react';

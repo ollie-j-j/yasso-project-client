@@ -1,4 +1,4 @@
-import RunsAccordian from "../components/RunsAccordian";
+import RunsAccordian from "../components/Learn/RunsAccordian";
 import './LearnPage.css'
 
 function LearnPage() {

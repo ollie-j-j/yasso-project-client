@@ -24,7 +24,7 @@ import {
   StarIcon,
   BoltIcon,
 } from "@heroicons/react/24/outline";
-import { AuthContext } from "../context/auth.context";
+import { AuthContext } from "../../context/auth.context";
 
 const colors = {
   blue: "bg-blue-50 text-blue-500",

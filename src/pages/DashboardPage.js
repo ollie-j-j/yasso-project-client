@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './DashboardPage.css';
-import Dashboard from '../components/Dashboard';
+import Dashboard from '../components/Dashboard/Dashboard';
 import { Link } from 'react-router-dom';
 import { Button } from "@material-tailwind/react";
 import planMethods from "../services/plans.service";

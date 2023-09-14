@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useContext, useEffect } from "react";
-import planMethods from "../services/plans.service";
-import { AuthContext } from "../context/auth.context";
+import planMethods from "../../services/plans.service";
+import { AuthContext } from "../../context/auth.context";
 import PieChart from './PieChart';
 import { Spinner } from "@material-tailwind/react";
 import {

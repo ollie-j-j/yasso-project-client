@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import authMethods from "../services/auth.service";
+import { AuthContext } from "../../context/auth.context";
+import authMethods from "../../services/auth.service";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import './LogInForm.css';
 

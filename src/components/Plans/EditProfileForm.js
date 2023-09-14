@@ -9,8 +9,8 @@ import {
     Typography,
     Avatar,
 } from "@material-tailwind/react";
-import authMethods from "../services/auth.service";
-import UpdateProfileDialog from "./UpdateProfileDialog";
+import authMethods from "../../services/auth.service";
+import UpdateProfileDialog from "../Dialogs/UpdateProfileDialog";
 
 function EditProfileForm({ username, email, imageUrl }) {
     const [formData, setFormData] = useState({

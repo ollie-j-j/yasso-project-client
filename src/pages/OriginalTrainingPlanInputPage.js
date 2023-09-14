@@ -1,5 +1,5 @@
 import React from 'react';
-import OriginalTrainingPlanForm from '../components/OriginalTrainingPlanForm';
+import OriginalTrainingPlanForm from '../components/Plans/OriginalTrainingPlanForm';
 
 function OriginalTrainingPlanInputPage() {
     return (

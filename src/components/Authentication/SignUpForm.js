@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import authMethods from "../services/auth.service";
+import authMethods from "../../services/auth.service";
 import {
   Card,
   Input,

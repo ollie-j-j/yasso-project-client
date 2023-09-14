@@ -27,7 +27,7 @@ function DashboardCard({color = 'blue'}) {
         <CardFooter className="pt-0">
             <Link to="/dashboard">
                 <Button size="sm" variant="text" className="flex items-center gap-2 lowercase text-sm">
-                  Learn More
+                  view dashboard
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

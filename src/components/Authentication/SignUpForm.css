@@ -1,0 +1,11 @@
+.signup-container {
+    margin-top: 50px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+  }
+  

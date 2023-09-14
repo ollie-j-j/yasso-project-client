@@ -1,0 +1,17 @@
+.dashboard-page-main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.dashboard-page-main-content > div {
+    width: 50%;
+}
+
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}

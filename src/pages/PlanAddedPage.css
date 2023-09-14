@@ -1,0 +1,21 @@
+.plan-added-main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.plan-added-text-container {
+    max-width: 300px;
+    margin-bottom: 0.5rem;
+}
+
+.view-plan-button, .update-plan-button {
+    margin: 0.5rem;
+}

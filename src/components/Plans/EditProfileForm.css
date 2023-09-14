@@ -1,0 +1,17 @@
+.edit-profile-container {
+    margin-top: 50px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+  }
+
+  .avatar {
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
